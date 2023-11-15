@@ -1,24 +1,17 @@
-
 <script setup>
 definePageMeta({
-    layout: 'products'
-})
-import { ref } from 'vue'
+  layout: "products",
+});
+// import { ref } from 'vue'
 
-const groceryList = ref([
-  { id: 0, text: 'Vegetables' },
-  { id: 1, text: 'Cheese' },
-  { id: 2, text: 'Whatever else humans are supposed to eat' }
-])
+// fetch products
+const { data: products } = await useFetch("https://fakestoreapi.com/products");
 </script>
 
 <template>
-<h2>Products</h2>
-  <ol>
-    <li
-      v-for="item in groceryList"
-      :todo="item"
-      :key="item.id"
-    >{{ item.text }}</li>
-  </ol>
+  <div class="grid grid-cols-4 gap-5">
+    <div v-for="(pObj, index) in products" :key="index">
+      <NuxtLink :to="`/products/${pObj.id}`">{{ pObj.title }}</NuxtLink>
+    </div>
+  </div>
 </template>
