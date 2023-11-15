@@ -11,11 +11,25 @@ definePageMeta({
 
 <template>
   <div>
-    <pre>
-        <small>{{ product }}</small>
-    </pre>
-    <p>{{ product.title }}</p>
-    <p>{{ product.price }}</p>
-    <p>{{ product.description }}</p>
+    <div class="card">
+      <div class="grid grid-cols-2 gap-10">
+        <div class="p-7">
+          <img class="thumb" :src="product.image" alt="product thumb" />
+        </div>
+        <div class="p-7">
+          <h2 class="text-4xl my-7">{{ product.title }}</h2>
+          <p class="text-xl my-7">Price - ${{ product.price }}</p>
+          <h3 class="font-bold border-b-2 mb-4 pb-2">Product description</h3>
+          <p class="mb-7">{{ product.description }}</p>
+        </div>
+      </div>
+      <p class="font-bold text-gray-500 m-4 truncate">{{ product.title }}</p>
+    </div>
   </div>
 </template>
+
+<style scoped>
+img {
+  max-width: 400px;
+}
+</style>
