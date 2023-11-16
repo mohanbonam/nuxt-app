@@ -4,6 +4,10 @@ const uri = `https://fakestoreapi.com/products/${id}`;
 
 const { data: product } = await useFetch(uri, { key: id });
 
+if (!product.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Product not found'})
+}
+
 definePageMeta({
   layout: "products",
 });
@@ -12,6 +16,7 @@ definePageMeta({
 <template>
   <div>
     <div class="card">
+      <pre>{{ product }}</pre>
       <div class="grid grid-cols-2 gap-10">
         <div class="p-7">
           <img  :src="product.image" alt="product thumb" />
